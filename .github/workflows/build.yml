@@ -3,7 +3,7 @@ name: Compilar ChronioBox para Multiplataforma
 on:
   release:
     types: [published, edited]
-  workflow_dispatch: # Permite ejecutarlo manualmente desde la pestaña Actions
+  workflow_dispatch:
 
 jobs:
   build:
@@ -48,10 +48,8 @@ jobs:
           mv dist/app dist_files/ChronioBox-macOS
         fi
 
-    - name: 🚀 Subir binarios a la Release
-      uses: softprops/action-gh-release@v2
-      if: github.event_name == 'release'
+    - name: 📦 Guardar artefacto descargable
+      uses: actions/upload-artifact@v4
       with:
-        files: dist_files/*
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: ChronioBox-${{ matrix.os }}
+        path: dist_files/*
