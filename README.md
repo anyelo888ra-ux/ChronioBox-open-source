@@ -38,21 +38,27 @@
 ## 🛠️ Compilación desde el Código Fuente (Open Source)
 Si prefieres clonar el repositorio y compilar tu propio ejecutable de forma local, sigue estos pasos:
 
-1. **Clona el repositorio:**
+1. **Clonar el repositorio:**
    ```bash
-   git clone [https://github.com/anyelo888ra-ux/ChronioBox-open-source.git](https://github.com/anyelo888ra-ux/ChronioBox-open-source.git)
+   git clone https://github.com/anyelo888ra-ux/ChronioBox-open-source.git
    cd ChronioBox-open-source
    ```
-   Instala las dependencias necesarias:
+
+2. **Instalar las dependencias necesarias:**
+   ```bash
    pip install PyQt5 PyQtWebEngine Pillow pyinstaller
+   ```
 
-
-   Genera tu propio icono (Opcional):
-   python generater icon.py
+3. **Generar tu propio icono (Opcional):**
+   ```bash
+   python "generater icon.py"
    python convertir.py
+   ```
 
-   Compila el archivo .exe con PyInstaller:
+4. **Compilar el archivo ejecutable con PyInstaller:**
+   ```bash
    pyinstaller --noconsole --onefile --icon=icono.ico app.py
+   ```
 
-   El ejecutable final se generará automáticamente dentro de la carpeta dist/.
-   
+El ejecutable final se generará automáticamente dentro de la carpeta `dist/`.
+
