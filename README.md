@@ -25,11 +25,13 @@
 
 ---
 
-## 📥 Descarga el Ejecutable (.exe)
-¿No quieres compilar el código y solo quieres usarlo en Windows? 
-1. Ve a la sección de **[Releases](../../releases)** de este repositorio.
-2. Descarga la última versión de **`ChronioBox.exe`**.
-3. ¡Haz doble clic y empieza a virtualizar!
+## 📥 Descargas Multiplataforma (Ejecutables Listos para Usar)
+¡Ya no necesitas configurar entornos de desarrollo complejos! Ve a la sección de **[Releases](../../releases)** y descarga el paquete correspondiente a tu sistema operativo:
+
+*   **💻 Windows:** Descarga `ChronioBox-Windows.exe` (o el paquete `.zip`), haz doble clic y ¡listo!
+*   **🐧 Linux (Ubuntu/Debian/etc):** Descarga `ChronioBox-Linux`. Recuerda darle permisos de ejecución desde la terminal con `chmod +x ChronioBox-Linux` antes de abrirlo.
+*   **🍏 macOS:** Descarga `ChronioBox-macOS` para ejecutar de forma nativa en tu computadora Apple.
+
 
 ---
 
