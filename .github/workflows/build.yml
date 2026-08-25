@@ -1,0 +1,56 @@
+name: Compilar ChronioBox para Multiplataforma
+
+on:
+  release:
+    types: [published, edited]
+
+jobs:
+  build:
+    name: Compilar en ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+
+    steps:
+    - name: 📥 Clonar repositorio
+      uses: actions/checkout@v4
+
+    - name: ⚙️ Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: 📦 Instalar dependencias
+      run: |
+        python -m pip install --upgrade pip
+        pip install PyQt5 PyQtWebEngine Pillow pyinstaller
+
+    - name: 🎨 Generar recursos (Icono)
+      run: |
+        python generater\ icon.py || echo "Generador omitido"
+        python convertir.py || echo "Convertidor omitido"
+
+    - name: 🛠️ Compilar con PyInstaller
+      run: |
+        pyinstaller --noconsole --onefile --icon=icono.ico app.py
+
+    - name: 🗂️ Organizar archivos compilados
+      shell: bash
+      run: |
+        mkdir -p dist_files
+        if [ "${{ matrix.os }}" == "windows-latest" ]; then
+          mv dist/app.exe dist_files/ChronioBox-Windows.exe
+        elif [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
+          mv dist/app dist_files/ChronioBox-Linux
+        elif [ "${{ matrix.os }}" == "macos-latest" ]; then
+          mv dist/app dist_files/ChronioBox-macOS
+        fi
+
+    - name: 🚀 Subir binarios a la Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: dist_files/*
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
